@@ -1,6 +1,6 @@
 import { render } from "@testing-library/vue";
 import Header from "../../components/Header.vue"; // Adjust path as necessary
-import { it, describe, expect } from "vitest";
+import { it, expect } from "vitest";
 
 it("renders the header component and checks if it exists", async () => {
   const { getByTestId } = render(Header); // Render the Header component
