@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/dtos/createuserdto.ts","./src/handlers/users.ts","./src/routes/users.ts","./src/types/query-params.ts","./src/types/userresponse.ts"],"version":"5.7.3"}
