@@ -1,12 +1,12 @@
 import { render } from "@testing-library/vue";
 import Header from "../../components/Header.vue";
-import { createTestRoute } from "../testUtils/testUtils";
+import { createTestRouter } from "../testUtils/testUtils";
 
 describe("Header", () => {
   it("renders the header component and checks if it exists", async () => {
     const { getByTestId } = render(Header, {
       global: {
-        plugins: [createTestRoute()],
+        plugins: [createTestRouter()],
       },
     });
     const headerElement = getByTestId("header");
@@ -16,7 +16,7 @@ describe("Header", () => {
   it("renders the header component with the correct number of links", () => {
     render(Header, {
       global: {
-        plugins: [createTestRoute()],
+        plugins: [createTestRouter()],
       },
     });
     const links = document.querySelectorAll("a");
