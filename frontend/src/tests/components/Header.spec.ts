@@ -1,9 +1,28 @@
 import { render } from "@testing-library/vue";
-import Header from "../../components/Header.vue"; // Adjust path as necessary
-import { it, expect } from "vitest";
+import Header from "../../components/Header.vue";
+import { createTestRoute } from "../testUtils/testUtils";
 
-it("renders the header component and checks if it exists", async () => {
-  const { getByTestId } = render(Header); // Render the Header component
-  const headerElement = getByTestId("header"); // Use a test ID to locate the element
-  expect(headerElement).toBeTruthy(); // Expect the header to be in the document
+describe("Header", () => {
+  it("renders the header component and checks if it exists", async () => {
+    const { getByTestId } = render(Header, {
+      global: {
+        plugins: [createTestRoute()],
+      },
+    });
+    const headerElement = getByTestId("header");
+    expect(headerElement).toBeTruthy();
+  });
+
+  it("renders the header component with the correct number of links", () => {
+    render(Header, {
+      global: {
+        plugins: [createTestRoute()],
+      },
+    });
+    const links = document.querySelectorAll("a");
+    expect(links.length).toBe(3);
+    expect(links[0].textContent).toBe("Home");
+    expect(links[1].textContent).toBe("About");
+    expect(links[2].textContent).toBe("Contact");
+  });
 });

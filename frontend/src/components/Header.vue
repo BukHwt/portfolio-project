@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <header id="header-container">
+  <header id="header-container" data-testid="header">
     <nav>
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
@@ -15,7 +15,7 @@
   position: sticky;
   top: 0;
   width: 100%;
-  background: red;
+  background: turquoise;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   height: 2.5em;
