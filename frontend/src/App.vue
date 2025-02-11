@@ -5,9 +5,7 @@ import Header from "./components/Header.vue";
 <template>
   <div id="app-container">
     <Header> </Header>
-    <div id="router-container">
-      <router-view> </router-view>
-    </div>
+    <router-view> </router-view>
   </div>
 </template>
 
@@ -15,9 +13,7 @@ import Header from "./components/Header.vue";
 #app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   margin: 0;
-  min-width: 100vw;
   padding: 0;
 }
 </style>
