@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div id="contact-container" data-testId="contact">
+  <div id="contact" data-testId="contact" class="container">
     <h1>Contact</h1>
   </div>
 </template>
