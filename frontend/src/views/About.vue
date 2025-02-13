@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import EducationCard from "../components/EducationCard.vue";
+</script>
 
 <template>
   <div id="about" data-testId="about" class="container">
@@ -20,20 +22,29 @@
       </div>
       <div id="education-content">
         <h1>Education</h1>
-        <p>
-          <strong>Grand Circus Coding Bootcamp</strong>
-          <br />
-          Certificate in Full Stack Web Development, MERN Stack
-          <br />
-          <strong>Olivet College</strong>
-          <br />
-          Secondary Education Certificate in History and Social Studies
-          <br />
-          <strong>Albion College</strong>
-          <br />
-          Bachelor of Arts in History and Political Science
-          <br />
-        </p>
+        <EducationCard
+          school="Grand Circus Bootcamp"
+          degree="Javascript Full Stack Development"
+          fieldOfStudy="MERN Tech Stack"
+          startMonthYear="January 2022"
+          endMonthYear="April 2022"
+          description="Full Stack Development Bootcamp focused on the MERN Tech Stack"
+        />
+        <EducationCard
+          school="Olivet College
+        "
+          degree="Secondary Education Certification"
+          fieldOfStudy="Social Studies"
+          startMonthYear="August 2009"
+          endMonthYear="December 2010"
+        />
+        <EducationCard
+          school="Albion College"
+          degree="Bachelor of Arts"
+          fieldOfStudy="History and Political Science"
+          startMonthYear="August 2003"
+          endMonthYear="May 2007"
+        />
       </div>
       <div id="employment-history">
         <h1>Employment History</h1>
