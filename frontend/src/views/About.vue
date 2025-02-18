@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import EducationCard from "../components/EducationCard.vue";
+import EmploymentCard from "../components/EmploymentCard.vue";
 </script>
 
 <template>
@@ -48,61 +49,20 @@ import EducationCard from "../components/EducationCard.vue";
       </div>
       <div id="employment-history">
         <h1>Employment History</h1>
-        <p>
-          <strong>Software Consultant</strong>
-          <br />
-          <strong>Menlo Innovations</strong>
-          <br />
-          Ann Arbor, MI
-          <br />
-          <em>December 2022 - December 2024</em>
-          <br />
-          <br />
-          <strong>Team Leader, Workforce Management</strong>
-          <br />
-          <strong>Rocket Mortgage</strong>
-          <br />
-          Detroit, MI
-          <br />
-          <em>Nov 2018 - Jan 2022</em>
-          <br />
-          <br />
-          <strong>People Capacity Specialist</strong>
-          <br />
-          <strong>Rocket Mortgage</strong>
-          <br />
-          Detroit, MI
-          <br />
-          <em>Jul 2017 - Nov 2018</em>
-          <br />
-          <br />
-          <strong>Team Leader, Training</strong>
-          <br />
-          <strong>Rocket Mortgage</strong>
-          <br />
-          Detroit, MI
-          <br />
-          <em>Apr 2016 - Jul 2017</em>
-          <br />
-          <br />
-          <strong>ISM Assurance Specialist</strong>
-          <br />
-          <strong>Rocket Mortgage</strong>
-          <br />
-          Detroit, MI
-          <br />
-          <em>Jun 2013 - Apr 2016</em>
-          <br />
-          <br />
-          <strong>Mortgage Banker</strong>
-          <br />
-          <strong>Rocket Mortgage</strong>
-          <br />
-          Detroit, MI
-          <br />
-          <em>Feb 2012 - Jun 2013</em>
-          <br />
-        </p>
+        <EmploymentCard
+          company="Menlo Innovations"
+          position="Software Consultant"
+          location="Ann Arbor, MI"
+          startMonthYear="December 2022"
+          endMonthYear="December 2024"
+          :description="[
+            'Designs and implements full-stack solutions using JavaScript, C#, SQL, and Java for diverse projects.',
+            'Builds scalable applications with React, Aurelia, Spring Boot, and .NET, enhancing user experience',
+            'Collaborates with clients to align project requirements with business goals, ensuring satisfaction.',
+            'Mentors team members, promoting knowledge sharing and technical growth.',
+            'Delivers measurable improvements in project outcomes through effective problem-solving. ',
+          ]"
+        />
       </div>
     </div>
   </div>
