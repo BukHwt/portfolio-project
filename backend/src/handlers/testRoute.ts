@@ -1,5 +1,5 @@
-import { Request, Response } from "express-serve-static-core";
 import pool from "../db/neonDB";
+import { Request, Response } from "express-serve-static-core";
 
 export const getTestDB = async (req: Request, res: Response) => {
   try {
