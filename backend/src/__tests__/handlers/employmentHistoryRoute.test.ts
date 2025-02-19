@@ -2,6 +2,7 @@ import { EmploymentHistory } from "../../types/employmentHistory";
 import pool from "../../db/neonDB";
 import { getEmploymentHistory } from "../../handlers/employmentHistoryRoute";
 import { Request, Response } from "express-serve-static-core";
+import { queries } from "../../queries/employmentHistory";
 
 jest.mock("../../db/neonDB", () => ({
   query: jest.fn(),
@@ -11,20 +12,6 @@ describe("getTestDB", () => {
   afterEach(() => {
     jest.restoreAllMocks();
   });
-
-  const getEmploymentHistoryQuery = `
-  SELECT 
-    eh."id", 
-    eh.company, 
-    eh."position", 
-    eh."location", 
-    eh.start_month_year, 
-    eh.end_month_year, 
-    ARRAY_AGG(jd.description ORDER BY jd.id) AS "description" 
-  FROM employment_history eh 
-  JOIN job_descriptions jd ON eh.id = jd.employment_id 
-  GROUP BY eh."id", eh.company, eh."position", eh."location", eh.start_month_year, eh.end_month_year;
-`;
 
   it("should return the mocked data from the database", async () => {
     const mockEmploymentHistory: EmploymentHistory = {
@@ -49,7 +36,7 @@ describe("getTestDB", () => {
     } as unknown as Response;
 
     await getEmploymentHistory(mockRequest, mockResponse);
-    expect(pool.query).toHaveBeenCalledWith(getEmploymentHistoryQuery);
+    expect(pool.query).toHaveBeenCalledWith(queries.GET_EMPLOYMENT_HISTORY);
     expect(mockResponse.json).toHaveBeenCalledWith([mockEmploymentHistory]);
   });
 });

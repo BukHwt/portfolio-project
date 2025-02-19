@@ -1,24 +1,11 @@
 import { Request, Response } from "express-serve-static-core";
 import pool from "../db/neonDB";
 import { EmploymentHistory } from "../types/employmentHistory";
-
-const getEmploymentHistoryQuery = `
-  SELECT 
-    eh."id", 
-    eh.company, 
-    eh."position", 
-    eh."location", 
-    eh.start_month_year, 
-    eh.end_month_year, 
-    ARRAY_AGG(jd.description ORDER BY jd.id) AS "description" 
-  FROM employment_history eh 
-  JOIN job_descriptions jd ON eh.id = jd.employment_id 
-  GROUP BY eh."id", eh.company, eh."position", eh."location", eh.start_month_year, eh.end_month_year;
-`;
+import { queries } from "../queries/employmentHistory";
 
 export const getEmploymentHistory = async (req: Request, res: Response) => {
   try {
-    const result = await pool.query(getEmploymentHistoryQuery);
+    const result = await pool.query(queries.GET_EMPLOYMENT_HISTORY);
 
     // Map the result rows to match your interface
     const mappedResults: EmploymentHistory[] = result.rows.map((row) => ({
