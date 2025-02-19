@@ -5,15 +5,18 @@ describe("EmploymentCard", () => {
   it("renders employment details correctly", () => {
     const wrapper = mount(EmploymentCard, {
       props: {
-        company: "Menlo Innovations",
-        position: "Software Consultant",
-        location: "Ann Arbor, MI",
-        startMonthYear: "08/2007",
-        endMonthYear: "05/2010",
-        description: [
-          "Developed software applications for clients.",
-          "Collaborated with team members on various projects",
-        ],
+        employmentHistory: {
+          id: 1,
+          company: "Menlo Innovations",
+          position: "Software Consultant",
+          location: "Ann Arbor, MI",
+          startMonthYear: "08/2007",
+          endMonthYear: "05/2010",
+          description: [
+            "Developed software applications for clients.",
+            "Collaborated with team members on various projects",
+          ],
+        },
       },
     });
     const textContent = wrapper.text();

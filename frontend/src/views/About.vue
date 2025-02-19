@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import EducationCard from "../components/EducationCard.vue";
 import EmploymentCard from "../components/EmploymentCard.vue";
+import { getEmploymentHistory } from "../services/employmentHistoryService";
+import type { EmploymentHistory } from "../types/EmploymentHistory";
+import { ref, onMounted } from "vue";
+
+const employmentHistoryRecords = ref<EmploymentHistory[]>([]);
+onMounted(async () => {
+  employmentHistoryRecords.value = await getEmploymentHistory();
+});
 </script>
 
 <template>
@@ -50,18 +58,9 @@ import EmploymentCard from "../components/EmploymentCard.vue";
       <div id="employment-history">
         <h1>Employment History</h1>
         <EmploymentCard
-          company="Menlo Innovations"
-          position="Software Consultant"
-          location="Ann Arbor, MI"
-          startMonthYear="December 2022"
-          endMonthYear="December 2024"
-          :description="[
-            'Designs and implements full-stack solutions using JavaScript, C#, SQL, and Java for diverse projects.',
-            'Builds scalable applications with React, Aurelia, Spring Boot, and .NET, enhancing user experience',
-            'Collaborates with clients to align project requirements with business goals, ensuring satisfaction.',
-            'Mentors team members, promoting knowledge sharing and technical growth.',
-            'Delivers measurable improvements in project outcomes through effective problem-solving. ',
-          ]"
+          v-for="employmentHistory in employmentHistoryRecords"
+          :key="employmentHistory.id"
+          :employment-history="employmentHistory"
         />
       </div>
     </div>

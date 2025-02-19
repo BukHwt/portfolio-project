@@ -1,27 +1,27 @@
 <script setup lang="ts">
+import type { EmploymentHistory } from "../types/EmploymentHistory";
+
 defineProps<{
-  company: string;
-  position: string;
-  location: string;
-  startMonthYear: string;
-  endMonthYear: string;
-  description?: string[];
+  employmentHistory: EmploymentHistory;
 }>();
 </script>
 <template>
   <div class="employment-card">
-    <h2>{{ company }}</h2>
+    <h2>{{ employmentHistory.company }}</h2>
     <p>
-      <strong>{{ position }}</strong>
+      <strong>{{ employmentHistory.position }}</strong>
     </p>
     <p>
-      <em>{{ location }}</em>
+      <em>{{ employmentHistory.location }}</em>
     </p>
     <p>
-      <em>Start: {{ startMonthYear }} End: {{ endMonthYear }}</em>
+      <em
+        >Start: {{ employmentHistory.startMonthYear }} End:
+        {{ employmentHistory.endMonthYear }}</em
+      >
     </p>
-    <ul v-if="description">
-      <li v-for="desc in description" :key="desc">
+    <ul v-if="employmentHistory.description">
+      <li v-for="desc in employmentHistory.description" :key="desc">
         <em>{{ desc }}</em>
       </li>
     </ul>

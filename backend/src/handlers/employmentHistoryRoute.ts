@@ -7,15 +7,14 @@ export const getEmploymentHistory = async (req: Request, res: Response) => {
   try {
     const result = await pool.query(queries.GET_EMPLOYMENT_HISTORY);
 
-    // Map the result rows to match your interface
     const mappedResults: EmploymentHistory[] = result.rows.map((row) => ({
       id: row.id,
       company: row.company,
       position: row.position,
       location: row.location,
-      startMonthYear: row.startMonthYear,
-      endMonthYear: row.endMonthYear,
-      description: row.description || [], // Ensure descriptions is always an array
+      startMonthYear: row.start_month_year,
+      endMonthYear: row.end_month_year,
+      description: row.description || [],
     }));
 
     res.json(mappedResults);
