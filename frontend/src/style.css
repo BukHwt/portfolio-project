@@ -14,3 +14,27 @@ body {
     1px 1px 0 black;
   font-weight: bold;
 }
+
+.card {
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 4px;
+  background: #fff;
+  transition: all 0.3s ease;
+  flex: 1 1 calc(33.33% - 16px);
+  min-width: 200px;
+  box-sizing: border-box;
+}
+
+/* Highlighted card */
+.card.highlighted {
+  border: 4px solid blue;
+  background: blue;
+  color: white;
+  z-index: 10;
+}
+
+/* Faded cards */
+.card.faded {
+  opacity: 0.5;
+}

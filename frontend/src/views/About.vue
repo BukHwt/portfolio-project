@@ -6,6 +6,7 @@ import { getEmploymentHistory } from "../services/employmentHistoryService";
 import type { Education } from "../types/Education";
 import type { EmploymentHistory } from "../types/EmploymentHistory";
 import { ref, onMounted } from "vue";
+import { highlightCard, resetCards } from "../utils/cssSelectorHelpers";
 
 const employmentHistoryRecords = ref<EmploymentHistory[]>([]);
 const educationRecords = ref<Education[]>([]);
@@ -33,24 +34,71 @@ onMounted(async () => {
           and maintain technical excellence.
         </p>
       </div>
-      <div id="education-content">
+      <div id="education-content" class="container">
         <h1>Education</h1>
-        <EducationCard
-          v-for="educationRecord in educationRecords"
-          :key="educationRecord.id"
-          :education="educationRecord"
-        />
+        <div class="container-content">
+          <EducationCard
+            v-for="educationRecord in educationRecords"
+            :id="`education-card-${educationRecord.id}`"
+            :key="educationRecord.id"
+            :education="educationRecord"
+            class="card"
+            @mouseover="highlightCard"
+            @mouseleave="resetCards"
+            @touchstart="highlightCard"
+            @touchend="resetCards"
+          />
+        </div>
       </div>
-      <div id="employment-history">
+      <div class="container">
         <h1>Employment History</h1>
-        <EmploymentCard
-          v-for="employmentHistory in employmentHistoryRecords"
-          :key="employmentHistory.id"
-          :employment-history="employmentHistory"
-        />
+        <div class="container-content">
+          <EmploymentCard
+            v-for="employmentHistory in employmentHistoryRecords"
+            :id="`employment-card-${employmentHistory.id}`"
+            :key="employmentHistory.id"
+            :employment-history="employmentHistory"
+            class="card"
+            @mouseover="highlightCard"
+            @mouseleave="resetCards"
+            @touchstart="highlightCard"
+            @touchend="resetCards"
+          />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+/* Base styles for mobile (up to 767px) */
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.container-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
+  overflow-x: auto;
+}
+
+#about-content,
+#education-content,
+#employment-history,
+.container-content > div {
+  flex: 1 1 calc(33.33% - 1em);
+  min-width: 12.5em;
+  box-sizing: border-box;
+}
+
+/* Tablet styles (768px and up) */
+
+@media (min-width: 768px) {
+}
+</style>
