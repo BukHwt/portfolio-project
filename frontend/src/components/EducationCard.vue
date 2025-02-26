@@ -1,25 +1,25 @@
 <script setup lang="ts">
+import type { Education } from "../types/Education";
+
 defineProps<{
-  school: string;
-  degree: string;
-  fieldOfStudy: string;
-  startMonthYear: string;
-  endMonthYear: string;
-  description?: string;
+  education: Education;
 }>();
 </script>
 
 <template>
   <div class="education-card">
-    <h2>{{ school }}</h2>
+    <h2>{{ education.school }}</h2>
     <p>
-      <strong>{{ degree }}</strong> in {{ fieldOfStudy }}
+      <strong>{{ education.degree }}</strong>
     </p>
     <p>
-      <em>Start: {{ startMonthYear }} End: {{ endMonthYear }}</em>
+      <em
+        >Start: {{ education.startMonthYear }} End:
+        {{ education.endMonthYear }}</em
+      >
     </p>
-    <p v-if="description">
-      <em>{{ description }}</em>
+    <p v-if="education.description">
+      <em>{{ education.description }}</em>
     </p>
   </div>
 </template>

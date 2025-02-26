@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import EducationCard from "../components/EducationCard.vue";
 import EmploymentCard from "../components/EmploymentCard.vue";
+import { getEducation } from "../services/educationService";
 import { getEmploymentHistory } from "../services/employmentHistoryService";
+import type { Education } from "../types/Education";
 import type { EmploymentHistory } from "../types/EmploymentHistory";
 import { ref, onMounted } from "vue";
 
 const employmentHistoryRecords = ref<EmploymentHistory[]>([]);
+const educationRecords = ref<Education[]>([]);
 onMounted(async () => {
   employmentHistoryRecords.value = await getEmploymentHistory();
+  educationRecords.value = await getEducation();
 });
 </script>
 
@@ -32,27 +36,9 @@ onMounted(async () => {
       <div id="education-content">
         <h1>Education</h1>
         <EducationCard
-          school="Grand Circus Bootcamp"
-          degree="Javascript Full Stack Development"
-          fieldOfStudy="MERN Tech Stack"
-          startMonthYear="January 2022"
-          endMonthYear="April 2022"
-          description="Full Stack Development Bootcamp focused on the MERN Tech Stack"
-        />
-        <EducationCard
-          school="Olivet College
-        "
-          degree="Secondary Education Certification"
-          fieldOfStudy="Social Studies"
-          startMonthYear="August 2009"
-          endMonthYear="December 2010"
-        />
-        <EducationCard
-          school="Albion College"
-          degree="Bachelor of Arts"
-          fieldOfStudy="History and Political Science"
-          startMonthYear="August 2003"
-          endMonthYear="May 2007"
+          v-for="educationRecord in educationRecords"
+          :key="educationRecord.id"
+          :education="educationRecord"
         />
       </div>
       <div id="employment-history">

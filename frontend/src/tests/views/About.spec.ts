@@ -5,9 +5,16 @@ import { getEmploymentHistory } from "../../services/employmentHistoryService";
 import type { EmploymentHistory } from "../../types/EmploymentHistory";
 import { flushPromises, mount } from "@vue/test-utils";
 import EmploymentCard from "../../components/EmploymentCard.vue";
+import type { Education } from "../../types/Education";
+import { getEducation } from "../../services/educationService";
+import EducationCard from "../../components/EducationCard.vue";
 
 vi.mock("../../services/employmentHistoryService", () => ({
   getEmploymentHistory: vi.fn(),
+}));
+
+vi.mock("../../services/educationService", () => ({
+  getEducation: vi.fn(),
 }));
 
 describe("About view", () => {
@@ -44,6 +51,52 @@ describe("About view", () => {
       await wrapper.vm.$nextTick();
       const aboutSection = wrapper.find("#employment-history");
       expect(aboutSection).toBeTruthy();
+    });
+  });
+
+  describe("Education", () => {
+    it("should call getEducation onMount", async () => {
+      const mockEducation: Education[] = [
+        {
+          id: 1,
+          school: "Albion College",
+          degree: "Bachelor of Arts",
+          startMonthYear: "Aug 2003",
+          endMonthYear: "May 2007",
+          description: "A school I attended",
+        },
+      ];
+      (getEducation as jest.Mock).mockResolvedValue(mockEducation);
+      const wrapper = mount(About);
+      await wrapper.vm.$nextTick();
+      expect(getEducation).toHaveBeenCalledTimes(1);
+    });
+
+    it("should render as many education cards as retreieved by getEducation", async () => {
+      const mockEducation: Education[] = [
+        {
+          id: 1,
+          school: "Albion College",
+          degree: "Bachelor of Arts",
+          startMonthYear: "Aug 2003",
+          endMonthYear: "May 2007",
+          description: "A school I attended",
+        },
+        {
+          id: 2,
+          school: "Olivet College",
+          degree: "Certification",
+          startMonthYear: "Aug 2009",
+          endMonthYear: "Dec 2010",
+          description: "A school I attended for school",
+        },
+      ];
+      (getEducation as jest.Mock).mockResolvedValue(mockEducation);
+      const wrapper = mount(About);
+      await flushPromises();
+
+      const educationCards = wrapper.findAllComponents(EducationCard);
+      expect(educationCards.length).toBe(2);
     });
   });
 
