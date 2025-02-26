@@ -9,7 +9,9 @@ describe("/api/users", () => {
     app = createApp();
   });
   it("should return an empty array when getting /api/users", async () => {
-    const response = await request(app).get("/api/users");
-    expect(response.body).toStrictEqual([]);
+    const response = await request(app).get("/test-db");
+    expect(JSON.parse(response.text)).toMatchObject({
+      now: expect.any(String),
+    });
   });
 });

@@ -1,9 +1,4 @@
-<script setup lang="ts">
-import { ref } from "vue";
-
-const count = ref(0);
-count.value++;
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <header id="header-container" data-testid="header">

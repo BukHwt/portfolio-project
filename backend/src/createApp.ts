@@ -1,12 +1,14 @@
 import express from "express";
-import usersRouter from "./routes/users";
 import cors from "cors";
 import testRouter from "./routes/testRoute";
+import employmentHistoryRouter from "./routes/employmentHistoryRoute";
+import educationRouter from "./routes/educationRoute";
 
 export const createApp = () => {
   const app = express();
   app.use(cors());
-  app.use("/api/users", usersRouter);
   app.use("/test-db", testRouter);
+  app.use("/employment-history", employmentHistoryRouter);
+  app.use("/education", educationRouter);
   return app;
 };
