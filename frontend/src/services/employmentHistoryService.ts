@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiURL = "http://localhost:3000/employment-history";
+const apiURL = import.meta.env.VITE_API_BASE_URL + "/employment-history";
 
 export const getEmploymentHistory = async () => {
   try {
