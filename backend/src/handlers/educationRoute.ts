@@ -5,7 +5,9 @@ import { queries } from "../queries/education";
 
 export const getEducation = async (req: Request, res: Response) => {
   try {
+    console.log("Connecting to the database...");
     const result = await pool.query(queries.GET_EDUCATION);
+    console.log("Database connected and query executed successfully");
 
     const mappedResults: Education[] = result.rows.map((row) => ({
       id: row.id,
@@ -18,7 +20,7 @@ export const getEducation = async (req: Request, res: Response) => {
 
     res.json(mappedResults);
   } catch (error) {
-    console.error(error);
+    console.error("Error occurred while accessing the database:", error);
     res.status(500).send("Database connection error");
   }
 };
