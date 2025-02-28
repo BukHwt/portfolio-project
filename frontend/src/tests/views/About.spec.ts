@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/vue";
+import { render } from "@testing-library/vue";
 import About from "../../views/About.vue";
 import { vi } from "vitest";
 import { getEmploymentHistory } from "../../services/employmentHistoryService";

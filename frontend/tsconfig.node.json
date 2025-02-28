@@ -4,8 +4,9 @@
     "target": "ESNext",
     "module": "ESNext",
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-    "lib": ["ES2023"],
+    "lib": ["ES2023", "DOM"],
     "skipLibCheck": true,
+    "types": ["node"],
 
     /* Bundler mode */
     "moduleResolution": "node10",
