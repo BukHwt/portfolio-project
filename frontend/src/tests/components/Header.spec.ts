@@ -17,23 +17,11 @@ describe("Header", async () => {
     });
     await nextTick();
 
-    const headerElement = getByTestId("header");
-    expect(headerElement).toBeTruthy();
     const links = document.querySelectorAll("a");
-    expect(links.length).toBe(1);
-  });
-
-  it("renders the header with the logo", async () => {
-    render(Header, {
-      global: {
-        plugins: [createTestRouter()],
-      },
-    });
-    await nextTick();
-
-    const logo = document.querySelector("img");
-    expect(logo).toBeTruthy();
-    expect(logo?.getAttribute("src")).toBe("/src/assets/wizardpng.png");
+    expect(links.length).toBe(4);
+    expect(links[1].textContent).toBe("Home");
+    expect(links[2].textContent).toBe("About");
+    expect(links[3].textContent).toBe("Contact");
   });
 
   it("shows hamburger menu", async () => {
@@ -53,7 +41,8 @@ describe("Header", async () => {
       global.innerWidth = 1024;
       global.dispatchEvent(new Event("resize"));
     });
-    it("renders the header component with the correct number of links", async () => {
+
+    it("renders the header with the logo", async () => {
       render(Header, {
         global: {
           plugins: [createTestRouter()],
@@ -61,11 +50,9 @@ describe("Header", async () => {
       });
       await nextTick();
 
-      const links = document.querySelectorAll("a");
-      expect(links.length).toBe(4);
-      expect(links[1].textContent).toBe("Home");
-      expect(links[2].textContent).toBe("About");
-      expect(links[3].textContent).toBe("Contact");
+      const logo = document.querySelector("img");
+      expect(logo).toBeTruthy();
+      expect(logo?.getAttribute("src")).toBe("/src/assets/wizardpng.png");
     });
 
     afterAll(() => {
