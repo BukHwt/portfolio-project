@@ -1,49 +1,144 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+import { useMediaQuery } from "../composables/useMediaQuery";
+
+const { isMobile } = useMediaQuery();
+
+const isMenuOpen = ref(false);
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
+</script>
 
 <template>
   <header id="header-container" data-testid="header">
     <router-link to="/"
-      ><img src="../assets/wizardpng.png" alt="wizard"
+      ><img src="../assets/wizardpng.png" alt="wizard" v-if="!isMobile"
     /></router-link>
-    <nav>
+
+    <button v-if="isMobile" @click="toggleMenu" aria-label="Toggle Navigation">
+      <span class="hamburger">&#9776;</span>
+    </button>
+
+    <nav v-if="!isMobile" class="desktop-nav">
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
       <router-link to="/contact">Contact</router-link>
     </nav>
+
+    <div v-if="isMobile" :class="{ 'mobile-menu': true, active: isMenuOpen }">
+      <router-link to="/" @click="toggleMenu">Home</router-link>
+      <router-link to="/about" @click="toggleMenu">About</router-link>
+      <router-link to="/contact" @click="toggleMenu">Contact</router-link>
+    </div>
   </header>
 </template>
 
 <style scoped>
 #header-container {
-  position: sticky;
-  background: rgb(176, 183, 188);
+  position: fixed;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
+  bottom: 0;
+  right: 0;
+  padding: 0 1em 1em 0;
+}
+button {
+  background: rgb(0, 118, 182);
+  border: 1px black solid;
+  border-radius: 1em;
 }
 
-nav {
+.hamburger {
+  font-size: 3.5rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: black;
+  /* padding: 10px; */
+}
+router-link {
+  width: 100%;
+}
+.mobile-menu {
+  position: absolute;
+  bottom: 3em;
+  right: 0;
+  background: rgb(176, 183, 188);
+  width: 7em;
+  height: 15em;
+  border-radius: 8px;
+  /* padding: 10px; */
   display: flex;
-  justify-content: right;
-  gap: 20px;
-  padding-right: 1.5vw;
+  flex-direction: column;
+  margin-right: 1em;
+  border: 1px black solid;
+  align-items: center;
+  justify-content: space-evenly;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
-a {
-  text-decoration: none;
+/* Active state */
+.mobile-menu.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-menu a {
+  text-decoration: underline;
   color: black;
   font-weight: bold;
-  text-shadow: 0;
   font-size: 1.5em;
-  -webkit-text-stroke: 1px rgb(0, 118, 182);
+  padding: 10px 0;
 }
 
-a:hover {
+.mobile-menu a:hover {
   color: rgb(0, 118, 182);
 }
-img {
-  padding-left: 1.5vw;
-  height: 6vh;
-  width: 6vh;
+
+@media (min-width: 768px) {
+  #header-container {
+    position: sticky;
+    background: rgb(176, 183, 188);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5vw;
+    height: 9vh;
+  }
+
+  img {
+    height: 100%;
+    width: 9vh;
+  }
+  .desktop-nav {
+    display: flex;
+    justify-content: right;
+    gap: 20px;
+  }
+
+  .desktop-nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 1.5em;
+    -webkit-text-stroke: 1px rgb(0, 118, 182);
+  }
+
+  .desktop-nav a:hover {
+    color: rgb(0, 118, 182);
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
 }
 </style>
