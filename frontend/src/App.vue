@@ -18,4 +18,9 @@ import { SpeedInsights } from "@vercel/speed-insights/vue";
   margin: 0;
   padding: 0;
 }
+
+/* Tablet styles (768px and up) */
+
+@media (min-width: 768px) {
+}
 </style>
