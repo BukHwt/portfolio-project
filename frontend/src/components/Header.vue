@@ -6,8 +6,12 @@ const { isMobile } = useMediaQuery();
 
 const isMenuOpen = ref(false);
 
-const toggleMenu = () => {
+const toggleMenu = (event: MouseEvent) => {
+  event.stopPropagation();
   isMenuOpen.value = !isMenuOpen.value;
+};
+const closeMenu = () => {
+  isMenuOpen.value = false;
 };
 </script>
 
@@ -28,9 +32,9 @@ const toggleMenu = () => {
     </nav>
 
     <div v-if="isMobile" :class="{ 'mobile-menu': true, active: isMenuOpen }">
-      <router-link to="/" @click="toggleMenu">Home</router-link>
-      <router-link to="/about" @click="toggleMenu">About</router-link>
-      <router-link to="/contact" @click="toggleMenu">Contact</router-link>
+      <router-link to="/" @click="closeMenu">Home</router-link>
+      <router-link to="/about" @click="closeMenu">About</router-link>
+      <router-link to="/contact" @click="closeMenu">Contact</router-link>
     </div>
   </header>
 </template>
@@ -57,20 +61,24 @@ button {
   background: none;
   border: none;
   color: black;
-  /* padding: 10px; */
+  padding-bottom: 1em;
 }
 router-link {
   width: 100%;
 }
+router-link {
+  width: 100%;
+}
+
 .mobile-menu {
   position: absolute;
   bottom: 3em;
   right: 0;
   background: rgb(176, 183, 188);
-  width: 7em;
-  height: 15em;
+  width: 8em;
+  height: auto;
+  max-height: 18em;
   border-radius: 8px;
-  /* padding: 10px; */
   display: flex;
   flex-direction: column;
   margin-right: 1em;
@@ -79,7 +87,9 @@ router-link {
   justify-content: space-evenly;
   transform: translateY(100%);
   opacity: 0;
-  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out,
+    transform 0.3s ease-out;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Active state */
@@ -89,11 +99,14 @@ router-link {
 }
 
 .mobile-menu a {
-  text-decoration: underline;
+  text-decoration: none;
   color: black;
   font-weight: bold;
   font-size: 1.5em;
-  padding: 10px 0;
+  padding: 15px 0;
+  width: 100%;
+  text-align: center;
+  transition: color 0.3s ease;
 }
 
 .mobile-menu a:hover {

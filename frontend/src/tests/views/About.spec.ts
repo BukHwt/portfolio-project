@@ -72,7 +72,7 @@ describe("About view", () => {
       expect(getEducation).toHaveBeenCalledTimes(1);
     });
 
-    it("should render as many education cards as retreieved by getEducation", async () => {
+    it("should render as many education cards as retrieved by getEducation", async () => {
       const mockEducation: Education[] = [
         {
           id: 1,
@@ -122,7 +122,7 @@ describe("About view", () => {
       expect(getEmploymentHistory).toHaveBeenCalledTimes(1);
     });
 
-    it("should render as many employment cards as retreived by getEmploymentHistory", async () => {
+    it("should render as many employment cards as retrieved by getEmploymentHistory", async () => {
       const mockEmploymentHistory: EmploymentHistory[] = [
         {
           id: 1,

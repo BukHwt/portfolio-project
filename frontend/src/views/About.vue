@@ -10,8 +10,26 @@ import { highlightCard, resetCards } from "../utils/cssSelectorHelpers";
 
 const employmentHistoryRecords = ref<EmploymentHistory[]>([]);
 const educationRecords = ref<Education[]>([]);
+const convertToDate = (monthYear: string) => {
+  const [monthStr, year] = monthYear.split(" ");
+  const month = new Date(Date.parse(monthStr + " 1, 2012")).getMonth();
+  return new Date(Number(year), month);
+};
+
+const sortEmploymentHistory = (
+  records: EmploymentHistory[]
+): EmploymentHistory[] => {
+  return records.sort((a, b) => {
+    const dateA = convertToDate(a.endMonthYear);
+    const dateB = convertToDate(b.endMonthYear);
+    return dateB.getTime() - dateA.getTime();
+  });
+};
+
 onMounted(async () => {
-  employmentHistoryRecords.value = await getEmploymentHistory();
+  employmentHistoryRecords.value = sortEmploymentHistory(
+    await getEmploymentHistory()
+  );
   educationRecords.value = await getEducation();
 });
 </script>

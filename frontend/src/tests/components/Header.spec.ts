@@ -10,7 +10,7 @@ describe("Header", async () => {
   });
 
   it("renders the header component and checks if it exists", async () => {
-    const { getByTestId } = render(Header, {
+    render(Header, {
       global: {
         plugins: [createTestRouter()],
       },
