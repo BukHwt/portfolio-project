@@ -7,7 +7,7 @@ import educationRouter from "./routes/educationRoute";
 const corsOptions = {
   origin: [
     "http://localhost:5173", // Local Vue dev server
-    "https://portfolio-project-iqotm9flk-steve-andersons-projects-d862a8e0.vercel.app/", // Preview deployment
+    "https://portfolio-project-bukhwt-steve-andersons-projects-d862a8e0.vercel.app", //preview
     "https://steveandersonthedeveloper.com", // Production deployment
   ],
   methods: "GET,POST,PUT,DELETE",
