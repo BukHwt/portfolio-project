@@ -61,7 +61,7 @@ onMounted(async () => {
             :key="educationRecord.id"
             :education="educationRecord"
             class="card"
-            @mouseover="highlightCard"
+            @mouseenter="highlightCard"
             @mouseleave="resetCards"
             @touchstart="highlightCard"
             @touchend="resetCards"
@@ -77,7 +77,7 @@ onMounted(async () => {
             :key="employmentHistory.id"
             :employment-history="employmentHistory"
             class="card"
-            @mouseover="highlightCard"
+            @mouseenter="highlightCard"
             @mouseleave="resetCards"
             @touchstart="highlightCard"
             @touchend="resetCards"
@@ -100,8 +100,7 @@ onMounted(async () => {
 
 .container-content {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1em;
   overflow-x: auto;
 }
@@ -118,5 +117,9 @@ onMounted(async () => {
 /* Tablet styles (768px and up) */
 
 @media (min-width: 768px) {
+  .container-content {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 </style>
