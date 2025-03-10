@@ -52,22 +52,6 @@ onMounted(async () => {
           and maintain technical excellence.
         </p>
       </div>
-      <div id="education-content" class="container">
-        <h1>Education</h1>
-        <div class="container-content">
-          <EducationCard
-            v-for="educationRecord in educationRecords"
-            :id="`education-card-${educationRecord.id}`"
-            :key="educationRecord.id"
-            :education="educationRecord"
-            class="card"
-            @mouseenter="highlightCard"
-            @mouseleave="resetCards"
-            @touchstart="highlightCard"
-            @touchend="resetCards"
-          />
-        </div>
-      </div>
       <div class="container">
         <h1>Employment History</h1>
         <div class="container-content">
@@ -76,6 +60,22 @@ onMounted(async () => {
             :id="`employment-card-${employmentHistory.id}`"
             :key="employmentHistory.id"
             :employment-history="employmentHistory"
+            class="card"
+            @mouseenter="highlightCard"
+            @mouseleave="resetCards"
+            @touchstart="highlightCard"
+            @touchend="resetCards"
+          />
+        </div>
+      </div>
+      <div id="education-content" class="container">
+        <h1>Education</h1>
+        <div class="container-content">
+          <EducationCard
+            v-for="educationRecord in educationRecords"
+            :id="`education-card-${educationRecord.id}`"
+            :key="educationRecord.id"
+            :education="educationRecord"
             class="card"
             @mouseenter="highlightCard"
             @mouseleave="resetCards"

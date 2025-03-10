@@ -6,10 +6,7 @@ import ContactTree from "../components/ContactTree.vue";
   <div id="contact" data-testId="contact" class="container">
     <h1>Contact Me Today!</h1>
     <ContactTree />
-    <div id="contact-form">
-      <h1>Find a form to use here</h1>
-      <h2>Also gonna need a way to send the contact info</h2>
-    </div>
+    <div id="contact-form"></div>
   </div>
 </template>
 
