@@ -89,7 +89,6 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-/* Base styles for mobile (up to 767px) */
 .container {
   display: flex;
   flex-direction: column;

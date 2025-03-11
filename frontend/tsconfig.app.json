@@ -11,7 +11,7 @@
     "noUncheckedSideEffectImports": true,
 
     /* Add vue-router types */
-    "types": ["vite/client", "vue-router", "node", "jest"],
+    "types": ["vite/client", "vue-router", "node", "jest", "vuetify"],
 
     /* Libraries */
     "lib": ["dom", "esnext"]

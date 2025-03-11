@@ -4,8 +4,8 @@ import { SpeedInsights } from "@vercel/speed-insights/vue";
 </script>
 
 <template>
+  <Header> </Header>
   <div id="app-container">
-    <Header> </Header>
     <router-view> </router-view>
   </div>
   <SpeedInsights />
@@ -16,11 +16,10 @@ import { SpeedInsights } from "@vercel/speed-insights/vue";
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding: 0;
+  padding: 1rem 1rem 2rem 1rem;
 }
 
 /* Tablet styles (768px and up) */
-
 @media (min-width: 768px) {
 }
 </style>

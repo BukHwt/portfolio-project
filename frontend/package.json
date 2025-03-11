@@ -14,7 +14,7 @@
     "axios": "^1.7.9",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
-    "vuetify": "^3.7.15"
+    "vuetify": "^3.7.16"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
@@ -26,6 +26,7 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
     "vite": "^6.1.0",
+    "vite-plugin-vuetify": "^2.1.0",
     "vitest": "^3.0.5",
     "vue-jest": "^5.0.0-alpha.10",
     "vue-tsc": "^2.2.0"

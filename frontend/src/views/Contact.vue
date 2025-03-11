@@ -16,7 +16,7 @@ import ContactForm from "../components/ContactForm.vue";
         you!
       </p>
     </div>
-    <div>
+    <div id="contact-content">
       <ContactTree />
       <ContactForm />
     </div>
@@ -26,5 +26,21 @@ import ContactForm from "../components/ContactForm.vue";
 <style scoped>
 #contact {
   padding: 1em 2em;
+}
+@media (min-width: 768px) {
+  #contact {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    flex-direction: column;
+    height: 80vh;
+  }
+  #contact-content {
+    padding-top: 5em;
+    display: flex;
+    gap: 2em;
+    width: 75vw;
+    align-items: center;
+  }
 }
 </style>
