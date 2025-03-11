@@ -55,6 +55,7 @@ a {
   align-items: center;
   color: white;
   text-decoration: none;
+  margin-bottom: 1em;
 }
 svg {
   height: 1.5em;

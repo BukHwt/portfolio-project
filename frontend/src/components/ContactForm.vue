@@ -8,6 +8,7 @@ const submitForm = () => {
 </script>
 
 <template>
+  <h1>COMING SOON!</h1>
   <v-container id="contact-form">
     <v-form @submit.prevent="submitForm" id="form">
       <v-text-field
@@ -17,6 +18,7 @@ const submitForm = () => {
         variant="solo"
         hide-details
         required
+        disabled
         class="mb-4"
       ></v-text-field>
       <v-text-field
@@ -26,6 +28,7 @@ const submitForm = () => {
         variant="solo"
         hide-details
         required
+        disabled
         class="mb-4"
       ></v-text-field>
       <v-textarea
@@ -36,9 +39,10 @@ const submitForm = () => {
         variant="solo"
         hide-details
         required
+        disabled
         class="mb-4"
       ></v-textarea>
-      <v-btn type="submit" color="primary" variant="elevated"
+      <v-btn type="submit" color="primary" variant="elevated" disabled
         >Send Message</v-btn
       >
     </v-form>

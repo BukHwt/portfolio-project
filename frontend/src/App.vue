@@ -16,7 +16,7 @@ import { SpeedInsights } from "@vercel/speed-insights/vue";
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding: 1rem 1rem 2rem 1rem;
+  padding: 1rem 0.5rem 2rem 0.5rem;
 }
 
 /* Tablet styles (768px and up) */

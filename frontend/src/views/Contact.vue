@@ -5,9 +5,9 @@ import ContactForm from "../components/ContactForm.vue";
 
 <template>
   <div id="contact" data-testId="contact" class="container">
-    <div>
-      <h1>Contact Me Today!</h1>
-      <h3>
+    <div class="mb-4">
+      <h1 class="mb-4">Contact Me Today!</h1>
+      <h3 class="mb-4">
         If you're looking to add to your team or want to chat programming, just
         get in touch!
       </h3>
@@ -30,7 +30,6 @@ import ContactForm from "../components/ContactForm.vue";
 @media (min-width: 768px) {
   #contact {
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
     flex-direction: column;
     height: 80vh;
