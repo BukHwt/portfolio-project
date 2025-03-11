@@ -24,29 +24,23 @@ const contactMethods = [
 </script>
 
 <template>
-  <div id="contact-info">
-    <h3>Contact Info</h3>
-    <h2>Feel free to reach out!</h2>
-    <p>I'd love to chat about opportunities or coding! Let's connect!</p>
-
-    <div id="contact-tree">
-      <a
-        v-for="contact in contactMethods"
-        :key="contact.name"
-        :href="contact.href"
-        target="_blank"
+  <div id="contact-tree">
+    <a
+      v-for="contact in contactMethods"
+      :key="contact.name"
+      :href="contact.href"
+      target="_blank"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="icon"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          class="icon"
-        >
-          <path :d="contact.icon" />
-        </svg>
-        <p>{{ contact.name }}</p>
-      </a>
-    </div>
+        <path :d="contact.icon" />
+      </svg>
+      <p>{{ contact.name }}</p>
+    </a>
   </div>
 </template>
 
@@ -54,7 +48,7 @@ const contactMethods = [
 #contact-tree {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
 }
 a {
   display: flex;
@@ -64,6 +58,5 @@ a {
 }
 svg {
   height: 1.5em;
-  padding: 0 1em;
 }
 </style>

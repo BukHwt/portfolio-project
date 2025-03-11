@@ -5,22 +5,26 @@ import ContactForm from "../components/ContactForm.vue";
 
 <template>
   <div id="contact" data-testId="contact" class="container">
-    <h1>Contact Me Today!</h1>
-    <ContactTree />
-    <ContactForm />
+    <div>
+      <h1>Contact Me Today!</h1>
+      <h3>
+        If you're looking to add to your team or want to chat programming, just
+        get in touch!
+      </h3>
+      <p>
+        Feel free to reach out to me or send me a message and I'll get back to
+        you!
+      </p>
+    </div>
+    <div>
+      <ContactTree />
+      <ContactForm />
+    </div>
   </div>
 </template>
 
 <style scoped>
 #contact {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 2em;
-  gap: 2em;
-}
-#contact-info {
-  padding-top: 3em;
-  height: 45vh;
+  padding: 1em 2em;
 }
 </style>

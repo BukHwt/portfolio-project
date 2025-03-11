@@ -33,7 +33,7 @@ const submitForm = () => {
 <style scoped>
 #contact-form {
   max-width: 30em;
-  margin: auto;
-  padding: 1em;
+  /* margin: auto; */
+  padding: 0;
 }
 </style>
