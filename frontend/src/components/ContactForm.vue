@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import type { ContactSubmission } from "../types/ContactSubmission";
 
-const form = ref({ name: "", email: "", message: "" });
+const form = ref<ContactSubmission>({ name: "", email: "", message: "" });
 const submitForm = () => {
   console.log("submit", form.value);
 };

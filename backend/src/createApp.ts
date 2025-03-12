@@ -3,6 +3,7 @@ import cors from "cors";
 import testRouter from "./routes/testRoute";
 import employmentHistoryRouter from "./routes/employmentHistoryRoute";
 import educationRouter from "./routes/educationRoute";
+import contactSubmissionRouter from "./routes/contactSubmissionRoute";
 
 const corsOptions = {
   origin: [
@@ -18,7 +19,9 @@ export const createApp = () => {
   const app = express();
   app.use(cors(corsOptions));
   app.use("/test-db", testRouter);
+  app.use(express.json());
   app.use("/employment-history", employmentHistoryRouter);
   app.use("/education", educationRouter);
+  app.use("/contact-submission", contactSubmissionRouter);
   return app;
 };
