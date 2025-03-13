@@ -48,6 +48,7 @@ const closeMenu = () => {
   bottom: 0;
   right: 0;
   padding: 0 1em 1em 0;
+  z-index: 1000;
 }
 button {
   background: rgb(0, 118, 182);
@@ -92,7 +93,6 @@ router-link {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Active state */
 .mobile-menu.active {
   transform: translateY(0);
   opacity: 1;
