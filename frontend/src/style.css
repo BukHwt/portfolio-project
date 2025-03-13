@@ -21,19 +21,3 @@ body {
   -webkit-text-stroke: 1px rgb(0, 118, 182);
   padding: 0 1em;
 }
-
-/* Highlighted card */
-.card.highlighted {
-  border: 0.25em solid black;
-  background: rgb(0, 175, 239);
-  z-index: 10;
-  -webkit-text-stroke: 1px black;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-}
-
-/* Faded cards */
-.card.faded {
-  opacity: 0.5;
-  color: black;
-  -webkit-text-stroke: 0px;
-}
