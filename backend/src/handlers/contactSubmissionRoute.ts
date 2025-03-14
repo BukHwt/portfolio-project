@@ -1,9 +1,10 @@
 import { Request, Response } from "express-serve-static-core";
 import pool from "../db/neonDB";
 import { queries } from "../queries/contact";
+import { ContactSubmission } from "../types/contactSubmission";
 
 export const submitContactForm = async (
-  req: Request,
+  req: Request<{}, {}, ContactSubmission>,
   res: Response
 ): Promise<void> => {
   const { name, email, message } = req.body;
