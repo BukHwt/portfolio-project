@@ -1,19 +1,24 @@
 <script setup lang="ts">
 import EducationCard from "../components/EducationCard.vue";
 import EmploymentCard from "../components/EmploymentCard.vue";
+import ProjectCard from "../components/ProjectCard.vue";
 import Carousel from "../components/Carousel.vue"; // Import the new component
 import { getEducation } from "../services/educationService";
 import { getEmploymentHistory } from "../services/employmentHistoryService";
 import type { Education } from "../types/Education";
+import type { Project } from "../types/Project";
 import type { EmploymentHistory } from "../types/EmploymentHistory";
 import { ref, onMounted } from "vue";
 import { useMediaQuery } from "../composables/useMediaQuery";
+import { fetchGitHubProjects } from "../services/githubServices";
+
 console.log("About: Setup started");
 const { isMobile } = useMediaQuery();
 console.log("About: isMobile:", isMobile.value);
 
 const employmentHistoryRecords = ref<EmploymentHistory[]>([]);
 const educationRecords = ref<Education[]>([]);
+const projects = ref<Project[]>([]);
 
 const convertToDate = (monthYear: string) => {
   const [monthStr, year] = monthYear.split(" ");
@@ -36,6 +41,7 @@ onMounted(async () => {
     await getEmploymentHistory()
   );
   educationRecords.value = await getEducation();
+  projects.value = await fetchGitHubProjects();
 });
 </script>
 
@@ -87,34 +93,56 @@ onMounted(async () => {
             </template>
           </Carousel>
         </div>
+        <div id="project-content" class="container">
+          <h1>Projects</h1>
+          <Carousel v-if="projects.length > 0" :items="projects">
+            <template v-slot="{ item }">
+              <ProjectCard :project="item" class="card" />
+            </template>
+          </Carousel>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.container {
+#about {
   display: flex;
   flex-direction: column;
+  height: auto;
+}
+
+#desktop-divider {
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
-  img {
-    height: 45vh;
+  #about {
+    height: 91vh;
+    overflow: hidden;
   }
-
   #desktop-divider {
     display: flex;
     flex-direction: row;
-    align-items: top;
     justify-content: space-around;
-    width: 100%;
-    align-items: center;
+    align-items: flex-start;
   }
+
   #carousels-container {
-    flex-direction: row;
-    align-items: center;
-    /* width: 50vw; */
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  #desktop-divider > .container:first-child {
+    flex: 0 0 auto;
+  }
+
+  img {
+    max-height: 100%;
+    width: auto;
   }
 }
 </style>
