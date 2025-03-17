@@ -57,12 +57,13 @@ onMounted(async () => {
       </p>
     </div>
     <div id="desktop-divider">
-      <img
-        src="../assets/Profile Pic.jpg"
-        alt="Bad Headshot"
-        v-if="!isMobile"
-      />
-
+      <div class="container">
+        <img
+          src="../assets/Profile Pic.jpg"
+          alt="Bad Headshot"
+          v-if="!isMobile"
+        />
+      </div>
       <div class="container" id="carousels-container">
         <div id="employment-content" class="container">
           <h1>Employment History</h1>
@@ -95,11 +96,10 @@ onMounted(async () => {
 .container {
   display: flex;
   flex-direction: column;
-  padding: 1em;
 }
+
 @media (min-width: 768px) {
   img {
-    padding-top: 4em;
     height: 45vh;
   }
 
@@ -109,10 +109,12 @@ onMounted(async () => {
     align-items: top;
     justify-content: space-around;
     width: 100%;
+    align-items: center;
   }
   #carousels-container {
-    display: flex;
+    flex-direction: row;
     align-items: center;
+    /* width: 50vw; */
   }
 }
 </style>

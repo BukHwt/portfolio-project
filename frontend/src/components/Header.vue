@@ -47,7 +47,7 @@ const closeMenu = () => {
   align-items: center;
   bottom: 0;
   right: 0;
-  padding: 0 1em 1em 0;
+  padding: 1em;
   z-index: 1000;
 }
 button {
@@ -103,7 +103,7 @@ router-link {
   color: black;
   font-weight: bold;
   font-size: 1.5em;
-  padding: 15px 0;
+  padding: 1em 0;
   width: 100%;
   text-align: center;
   transition: color 0.3s ease;
@@ -120,13 +120,13 @@ router-link {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1.5vw;
+    padding: 2em;
     height: 9vh;
   }
 
   img {
-    height: 100%;
     width: 9vh;
+    padding: 0.25em;
   }
   .desktop-nav {
     display: flex;

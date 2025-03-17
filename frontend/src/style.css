@@ -1,11 +1,21 @@
 body {
-  margin: 0;
-  padding: 0;
   background: rgb(0, 118, 182);
   color: white;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
 }
 
 .container {
+  padding-top: 1em;
   align-items: center;
   text-align: center;
   font-weight: bold;
@@ -19,5 +29,6 @@ body {
   text-align: left;
   color: black;
   -webkit-text-stroke: 1px rgb(0, 118, 182);
-  padding: 0 1em;
+  padding: 1em 1.5em;
+  /* width: 60em; */
 }

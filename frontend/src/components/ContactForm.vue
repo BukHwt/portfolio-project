@@ -101,7 +101,6 @@ const showToastMessage = (msg: string, type: "success" | "error") => {
 
 <style scoped>
 #contact-form {
-  padding: 0;
   color: black;
   background-color: rgb(0, 118, 182);
 }
