@@ -1,31 +1,32 @@
 <script setup lang="ts">
 import type { EmploymentHistory } from "../types/EmploymentHistory";
 
-defineProps<{
-  employmentHistory: EmploymentHistory;
-}>();
+defineProps<{ employmentHistory: EmploymentHistory }>();
 </script>
+
 <template>
-  <div class="employment-card">
-    <h2>{{ employmentHistory.company }}</h2>
-    <p>
-      <strong>{{ employmentHistory.position }}</strong>
-    </p>
-    <p>
-      <em>{{ employmentHistory.location }}</em>
-    </p>
-    <p>
-      <em
-        >Start: {{ employmentHistory.startMonthYear }} End:
-        {{ employmentHistory.endMonthYear }}</em
-      >
-    </p>
-    <ul v-if="employmentHistory.description">
-      <li v-for="desc in employmentHistory.description" :key="desc">
-        <em>{{ desc }}</em>
-      </li>
-    </ul>
-  </div>
+  <v-card class="employment-card">
+    <v-card-title>{{ employmentHistory.company }}</v-card-title>
+    <v-card-subtitle>{{ employmentHistory.position }}</v-card-subtitle>
+    <v-card-text>
+      <p>
+        <em>{{ employmentHistory.location }}</em>
+      </p>
+      <p>
+        <em
+          >Start: {{ employmentHistory.startMonthYear }} - End:
+          {{ employmentHistory.endMonthYear }}</em
+        >
+      </p>
+      <v-list v-if="employmentHistory.description">
+        <v-list-item v-for="desc in employmentHistory.description" :key="desc">
+          <v-list-item-title
+            ><em>{{ desc }}</em></v-list-item-title
+          >
+        </v-list-item>
+      </v-list>
+    </v-card-text>
+  </v-card>
 </template>
 
 <style scoped></style>

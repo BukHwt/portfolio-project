@@ -30,5 +30,12 @@ html {
   color: black;
   -webkit-text-stroke: 1px rgb(0, 118, 182);
   padding: 1em 1.5em;
-  /* width: 60em; */
+  width: 100%;
+}
+
+.card .v-card-text em {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: visible;
 }

@@ -1,19 +1,22 @@
 <script setup lang="ts">
 import EducationCard from "../components/EducationCard.vue";
 import EmploymentCard from "../components/EmploymentCard.vue";
+import ProjectCard from "../components/ProjectCard.vue";
 import Carousel from "../components/Carousel.vue"; // Import the new component
 import { getEducation } from "../services/educationService";
 import { getEmploymentHistory } from "../services/employmentHistoryService";
 import type { Education } from "../types/Education";
+import type { Project } from "../types/Project";
 import type { EmploymentHistory } from "../types/EmploymentHistory";
 import { ref, onMounted } from "vue";
 import { useMediaQuery } from "../composables/useMediaQuery";
-console.log("About: Setup started");
+import { fetchGitHubProjects } from "../services/githubServices";
+
 const { isMobile } = useMediaQuery();
-console.log("About: isMobile:", isMobile.value);
 
 const employmentHistoryRecords = ref<EmploymentHistory[]>([]);
 const educationRecords = ref<Education[]>([]);
+const projects = ref<Project[]>([]);
 
 const convertToDate = (monthYear: string) => {
   const [monthStr, year] = monthYear.split(" ");
@@ -30,12 +33,20 @@ const sortEmploymentHistory = (
     return dateB.getTime() - dateA.getTime();
   });
 };
+const sortProjects = (projects: Project[]): Project[] => {
+  return projects.sort((a, b) => {
+    const dateA = new Date(a.updated_at);
+    const dateB = new Date(b.updated_at);
+    return dateB.getTime() - dateA.getTime(); // Descending order (most recent first)
+  });
+};
 
 onMounted(async () => {
   employmentHistoryRecords.value = sortEmploymentHistory(
     await getEmploymentHistory()
   );
   educationRecords.value = await getEducation();
+  projects.value = sortProjects(await fetchGitHubProjects());
 });
 </script>
 
@@ -57,7 +68,7 @@ onMounted(async () => {
       </p>
     </div>
     <div id="desktop-divider">
-      <div class="container">
+      <div class="container" id="headshot-container">
         <img
           src="../assets/Profile Pic.jpg"
           alt="Bad Headshot"
@@ -73,6 +84,14 @@ onMounted(async () => {
           >
             <template v-slot="{ item }">
               <EmploymentCard :employment-history="item" class="card" />
+            </template>
+          </Carousel>
+        </div>
+        <div id="project-content" class="container">
+          <h1>Projects</h1>
+          <Carousel v-if="projects.length > 0" :items="projects">
+            <template v-slot="{ item }">
+              <ProjectCard :project="item" class="card" />
             </template>
           </Carousel>
         </div>
@@ -93,28 +112,48 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.container {
+#about {
   display: flex;
   flex-direction: column;
+  height: auto;
+  padding: 1em 2em;
+}
+
+#desktop-divider {
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
-  img {
-    height: 45vh;
+  #about {
+    height: 91vh;
+    overflow: hidden;
   }
-
   #desktop-divider {
     display: flex;
     flex-direction: row;
-    align-items: top;
-    justify-content: space-around;
-    width: 100%;
     align-items: center;
   }
+
+  #headshot-container {
+    width: 40vw;
+  }
+
   #carousels-container {
-    flex-direction: row;
-    align-items: center;
-    /* width: 50vw; */
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+    width: auto;
+    padding: 0 1em;
+  }
+
+  #desktop-divider > .container:first-child {
+    flex: 0 0 auto;
+  }
+
+  img {
+    max-height: 100%;
+    width: 18em;
   }
 }
 </style>
