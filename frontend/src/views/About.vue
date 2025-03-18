@@ -12,9 +12,7 @@ import { ref, onMounted } from "vue";
 import { useMediaQuery } from "../composables/useMediaQuery";
 import { fetchGitHubProjects } from "../services/githubServices";
 
-console.log("About: Setup started");
 const { isMobile } = useMediaQuery();
-console.log("About: isMobile:", isMobile.value);
 
 const employmentHistoryRecords = ref<EmploymentHistory[]>([]);
 const educationRecords = ref<Education[]>([]);
@@ -35,13 +33,20 @@ const sortEmploymentHistory = (
     return dateB.getTime() - dateA.getTime();
   });
 };
+const sortProjects = (projects: Project[]): Project[] => {
+  return projects.sort((a, b) => {
+    const dateA = new Date(a.updated_at);
+    const dateB = new Date(b.updated_at);
+    return dateB.getTime() - dateA.getTime(); // Descending order (most recent first)
+  });
+};
 
 onMounted(async () => {
   employmentHistoryRecords.value = sortEmploymentHistory(
     await getEmploymentHistory()
   );
   educationRecords.value = await getEducation();
-  projects.value = await fetchGitHubProjects();
+  projects.value = sortProjects(await fetchGitHubProjects());
 });
 </script>
 
@@ -63,7 +68,7 @@ onMounted(async () => {
       </p>
     </div>
     <div id="desktop-divider">
-      <div class="container">
+      <div class="container" id="headshot-container">
         <img
           src="../assets/Profile Pic.jpg"
           alt="Bad Headshot"
@@ -82,6 +87,14 @@ onMounted(async () => {
             </template>
           </Carousel>
         </div>
+        <div id="project-content" class="container">
+          <h1>Projects</h1>
+          <Carousel v-if="projects.length > 0" :items="projects">
+            <template v-slot="{ item }">
+              <ProjectCard :project="item" class="card" />
+            </template>
+          </Carousel>
+        </div>
         <div id="education-content" class="container">
           <h1>Education</h1>
           <Carousel
@@ -90,14 +103,6 @@ onMounted(async () => {
           >
             <template v-slot="{ item }">
               <EducationCard :education="item" class="card" />
-            </template>
-          </Carousel>
-        </div>
-        <div id="project-content" class="container">
-          <h1>Projects</h1>
-          <Carousel v-if="projects.length > 0" :items="projects">
-            <template v-slot="{ item }">
-              <ProjectCard :project="item" class="card" />
             </template>
           </Carousel>
         </div>
@@ -111,6 +116,7 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   height: auto;
+  padding: 1em 2em;
 }
 
 #desktop-divider {
@@ -126,14 +132,19 @@ onMounted(async () => {
   #desktop-divider {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start;
+    align-items: center;
+  }
+
+  #headshot-container {
+    width: 40vw;
   }
 
   #carousels-container {
     flex: 1;
     height: 100%;
     overflow-y: auto;
+    width: auto;
+    padding: 0 1em;
   }
 
   #desktop-divider > .container:first-child {
@@ -142,7 +153,7 @@ onMounted(async () => {
 
   img {
     max-height: 100%;
-    width: auto;
+    width: 18em;
   }
 }
 </style>

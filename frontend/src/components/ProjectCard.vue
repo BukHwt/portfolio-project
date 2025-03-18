@@ -2,6 +2,18 @@
 import type { Project } from "../types/Project";
 
 defineProps<{ project: Project }>();
+
+const formatDate = (isoDate: string): string => {
+  const date = new Date(isoDate);
+  return date.toLocaleString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+};
 </script>
 
 <template>
@@ -10,10 +22,10 @@ defineProps<{ project: Project }>();
     <v-card-text>
       <p>{{ project.description || "No description available." }}</p>
       <em
-        ><p>Created {{ project.created_at }}</p></em
+        ><p>Created: {{ formatDate(project.created_at) }}</p></em
       >
       <em
-        ><p>Last updated {{ project.updated_at }}</p></em
+        ><p>Last updated: {{ formatDate(project.updated_at) }}</p></em
       >
     </v-card-text>
   </v-card>
