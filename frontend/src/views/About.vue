@@ -55,16 +55,18 @@ onMounted(async () => {
     <div id="about-content">
       <h1>About</h1>
       <p>
-        Solution-focused full-stack software developer skilled in delivering
-        scalable, user-centric applications using modern technologies such as
-        .NET Core, C#, Java, JavaScript, React, and SQL. Proficient in designing
-        RESTful APIs, implementing microservices, and employing unit testing
-        frameworks like tSQLt. Experienced in CI/CD practices, cloud-based
-        deployments, and creating front-end interfaces with HTML5, CSS3, and
-        modern JavaScript frameworks. Committed to Agile methodologies and
-        Test-Driven Development, collaborating with teams and stakeholders to
-        deliver solutions that align with business goals and maintain technical
-        excellence.
+        Adaptable Full-Stack Software Engineer with over two years of hands-on
+        experience rapidly delivering high-quality, scalable software solutions.
+        Proven ability to quickly master diverse technologies, including Java,
+        Spring Boot, JavaScript, React, Node.js, and SQL. Background in
+        leadership and data analytics complements strong technical skills,
+        enabling effective collaboration in Agile teams. Passionate about
+        translating complex business challenges into robust, maintainable
+        applications, with a demonstrated history of driving successful legacy
+        system transformations and modernization projects. Leverages prior
+        experience in social science, education, and leadership—working directly
+        with C-suite executives to understand business needs, initiate strategic
+        projects, and deliver impactful outcomes.
       </p>
     </div>
     <div id="desktop-divider">
@@ -129,6 +131,7 @@ onMounted(async () => {
     height: 91vh;
     overflow: hidden;
   }
+
   #desktop-divider {
     display: flex;
     flex-direction: row;
