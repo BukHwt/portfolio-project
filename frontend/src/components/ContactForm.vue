@@ -89,7 +89,7 @@ const showToastMessage = (msg: string, type: "success" | "error") => {
         required
         class="mb-4"
       ></v-textarea>
-      <v-btn type="submit" color="primary" variant="elevated"
+      <v-btn type="submit" color="rgb(0, 96, 148)" variant="elevated"
         >Send Message</v-btn
       >
     </v-form>

@@ -51,9 +51,10 @@ const closeMenu = () => {
   z-index: 1000;
 }
 button {
-  background: rgb(0, 118, 182);
+  background: rgb(0, 96, 148);
   border: 1px black solid;
-  border-radius: 1em;
+  border-radius: 2em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .hamburger {

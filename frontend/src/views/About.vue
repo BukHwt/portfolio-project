@@ -119,6 +119,7 @@ onMounted(async () => {
   flex-direction: column;
   height: auto;
   padding: 1em 2em;
+  padding-bottom: 7em;
 }
 
 #desktop-divider {
