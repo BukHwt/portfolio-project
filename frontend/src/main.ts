@@ -21,6 +21,14 @@ const vuetify = createVuetify({
       },
     },
   },
+  defaults: {
+    global: {
+      ripple: false,
+    },
+    VCard: {
+      elevation: 0,
+    },
+  },
 });
 
 createApp(App).use(router).use(vuetify).mount("#app");

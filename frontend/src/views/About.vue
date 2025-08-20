@@ -52,62 +52,55 @@ onMounted(async () => {
 
 <template>
   <div id="about" data-testId="about" class="container">
-    <div id="about-content">
-      <h1>About</h1>
-      <p>
-        Adaptable Full-Stack Software Engineer with over two years of hands-on
-        experience rapidly delivering high-quality, scalable software solutions.
-        Proven ability to quickly master diverse technologies, including Java,
-        Spring Boot, JavaScript, React, Node.js, and SQL. Background in
-        leadership and data analytics complements strong technical skills,
-        enabling effective collaboration in Agile teams. Passionate about
-        translating complex business challenges into robust, maintainable
-        applications, with a demonstrated history of driving successful legacy
-        system transformations and modernization projects. Leverages prior
-        experience in social science, education, and leadership—working directly
-        with C-suite executives to understand business needs, initiate strategic
-        projects, and deliver impactful outcomes.
-      </p>
-    </div>
-    <div id="desktop-divider">
-      <div class="container" id="headshot-container">
-        <img
-          src="../assets/Profile Pic.jpg"
-          alt="Bad Headshot"
-          v-if="!isMobile"
-        />
+    <!-- Hero Section with Profile Picture -->
+    <div id="hero-section">
+      <h1 class="page-title">About Me</h1>
+      <div id="about-content">
+        <div class="profile-image-container" v-if="!isMobile">
+          <img
+            src="../assets/Profile Pic.jpg"
+            alt="Profile Picture"
+            class="hero-profile-pic"
+          />
+        </div>
+        <div class="hero-text">
+          <p class="about-summary">
+            Full-Stack Software Engineer with 2+ years experience in Java,
+            Spring Boot, JavaScript, React, and Node.js. Passionate about
+            delivering scalable solutions and modernizing legacy systems.
+          </p>
+        </div>
       </div>
-      <div class="container" id="carousels-container">
-        <div id="employment-content" class="container">
-          <h1>Employment History</h1>
-          <Carousel
-            v-if="employmentHistoryRecords.length > 0"
-            :items="employmentHistoryRecords"
-          >
-            <template v-slot="{ item }">
-              <EmploymentCard :employment-history="item" class="card" />
-            </template>
-          </Carousel>
-        </div>
-        <div id="project-content" class="container">
-          <h1>Projects</h1>
-          <Carousel v-if="projects.length > 0" :items="projects">
-            <template v-slot="{ item }">
-              <ProjectCard :project="item" class="card" />
-            </template>
-          </Carousel>
-        </div>
-        <div id="education-content" class="container">
-          <h1>Education</h1>
-          <Carousel
-            v-if="educationRecords.length > 0"
-            :items="educationRecords"
-          >
-            <template v-slot="{ item }">
-              <EducationCard :education="item" class="card" />
-            </template>
-          </Carousel>
-        </div>
+    </div>
+
+    <!-- Main Carousel Section -->
+    <div id="main-content">
+      <div id="employment-content" class="carousel-section">
+        <h1>Employment History</h1>
+        <Carousel
+          v-if="employmentHistoryRecords.length > 0"
+          :items="employmentHistoryRecords"
+        >
+          <template v-slot="{ item }">
+            <EmploymentCard :employment-history="item" class="card" />
+          </template>
+        </Carousel>
+      </div>
+      <div id="project-content" class="carousel-section">
+        <h1>Projects</h1>
+        <Carousel v-if="projects.length > 0" :items="projects">
+          <template v-slot="{ item }">
+            <ProjectCard :project="item" class="card" />
+          </template>
+        </Carousel>
+      </div>
+      <div id="education-content" class="carousel-section">
+        <h1>Education</h1>
+        <Carousel v-if="educationRecords.length > 0" :items="educationRecords">
+          <template v-slot="{ item }">
+            <EducationCard :education="item" class="card" />
+          </template>
+        </Carousel>
       </div>
     </div>
   </div>
@@ -122,42 +115,161 @@ onMounted(async () => {
   padding-bottom: 7em;
 }
 
-#desktop-divider {
-  flex-grow: 1;
-  overflow: hidden;
+/* Hero Section */
+#hero-section {
+  margin-bottom: 2em;
 }
 
+#about-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  margin-bottom: 2em;
+}
+
+.profile-image-container {
+  flex-shrink: 0;
+}
+
+.hero-profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.page-title {
+  font-size: 2.5em;
+  margin-bottom: 1em;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 100%;
+}
+
+.about-summary {
+  font-size: 1.2em;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* Main Carousel Content */
+#main-content {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 1.5em 1.5em;
+  padding-right: 2em; /* Account for scrollbar space */
+  overflow-y: auto;
+  /* Custom scrollbar styling */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05); /* thumb track */
+  width: 85%;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+#main-content::-webkit-scrollbar {
+  width: 12px;
+}
+
+#main-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin: 8px 0; /* Add some margin to match container radius */
+}
+
+#main-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.05); /* Creates inner spacing effect */
+  background-clip: content-box; /* Makes border create spacing */
+}
+
+#main-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+#main-content::-webkit-scrollbar-thumb:active {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.carousel-section {
+  margin-bottom: 3em;
+}
+
+.carousel-section:last-child {
+  margin-bottom: 0;
+}
+
+.carousel-section h1 {
+  font-size: 2em;
+  margin-bottom: 1em;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.5em;
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+  #about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .page-title {
+    font-size: 2em;
+  }
+
+  #main-content {
+    padding: 1.5em;
+  }
+}
+
+/* Desktop Styles */
 @media (min-width: 768px) {
   #about {
     height: 91vh;
     overflow: hidden;
+    padding: 1.5em 3em;
   }
 
-  #desktop-divider {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  #hero-section {
+    margin-bottom: 1.5em;
   }
 
-  #headshot-container {
-    width: 40vw;
+  .hero-profile-pic {
+    width: 150px;
+    height: 150px;
   }
 
-  #carousels-container {
-    flex: 1;
-    height: 100%;
-    overflow-y: auto;
-    width: auto;
-    padding: 0 1em;
+  .page-title {
+    font-size: 3em;
   }
 
-  #desktop-divider > .container:first-child {
-    flex: 0 0 auto;
+  .about-summary {
+    font-size: 1.3em;
   }
 
-  img {
-    max-height: 100%;
-    width: 18em;
+  #main-content {
+    height: calc(100vh - 250px);
+    padding: 2em 0.5em;
+    max-width: none;
+  }
+
+  .carousel-section h1 {
+    font-size: 2.2em;
   }
 }
 </style>

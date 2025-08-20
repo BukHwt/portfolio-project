@@ -1,3 +1,36 @@
+/* Global Font System */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Typography Scale */
+  --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+}
+
+* {
+  font-family: var(--font-family-primary) !important;
+  color: var(--color-text-primary) !important;
+}
+
 body {
   background: rgb(0, 118, 182);
   color: white;
@@ -5,6 +38,10 @@ body {
   margin: 0;
   padding: 0;
   overflow: auto;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-normal);
 }
 
 html {
@@ -14,6 +51,161 @@ html {
   overflow: auto;
 }
 
+/* Global Typography Styles */
+h1, .text-4xl {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary) !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+h2, .text-3xl {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary) !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+h3, .text-2xl {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary) !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+h4, .text-xl {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary) !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+h5, .text-lg {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+h6, .text-base {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+p, .text-body {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.text-sm {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.text-xs {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Global Design System Variables */
+:root {
+  /* Colors */
+  --color-primary: rgb(0, 118, 182);
+  --color-primary-dark: rgb(0, 96, 148);
+  --color-primary-light: rgb(0, 175, 239);
+  --color-surface: rgba(255, 255, 255, 0.08);
+  --color-surface-hover: rgba(255, 255, 255, 0.12);
+  --color-border: rgba(255, 255, 255, 0.2);
+  --color-border-hover: rgba(255, 255, 255, 0.3);
+  --color-text-primary: white;
+  --color-text-secondary: rgba(255, 255, 255, 0.9);
+  --color-text-muted: rgba(255, 255, 255, 0.7);
+  
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* Utility Classes */
+.glassmorphism {
+  background: var(--color-surface);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.glassmorphism-hover:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-border-hover);
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+.transition-all {
+  transition: all var(--transition-normal);
+}
+
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+
+/* Spacing Utilities */
+.p-xs { padding: var(--space-xs); }
+.p-sm { padding: var(--space-sm); }
+.p-md { padding: var(--space-md); }
+.p-lg { padding: var(--space-lg); }
+.p-xl { padding: var(--space-xl); }
+
+.m-xs { margin: var(--space-xs); }
+.m-sm { margin: var(--space-sm); }
+.m-md { margin: var(--space-md); }
+.m-lg { margin: var(--space-lg); }
+.m-xl { margin: var(--space-xl); }
+
 .container {
   padding-top: 1em;
   align-items: center;
@@ -21,16 +213,144 @@ html {
   font-weight: bold;
 }
 
+/* Mobile-friendly scrollbar styling */
+@media (max-width: 767px) {
+  /* Hide scrollbars by default on mobile */
+  body, html, * {
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE/Edge */
+  }
+  
+  body::-webkit-scrollbar, html::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; /* Chrome, Safari, Opera */
+  }
+  
+  /* Show a thin, auto-hiding scrollbar only when actively scrolling */
+  body:hover, html:hover, *:hover {
+    scrollbar-width: thin !important; /* Firefox */
+  }
+  
+  body:hover::-webkit-scrollbar, html:hover::-webkit-scrollbar, *:hover::-webkit-scrollbar {
+    display: block !important;
+    width: 4px !important;
+  }
+  
+  body:hover::-webkit-scrollbar-track, html:hover::-webkit-scrollbar-track, *:hover::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+  
+  body:hover::-webkit-scrollbar-thumb, html:hover::-webkit-scrollbar-thumb, *:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.7) !important;
+    border-radius: 4px !important;
+    opacity: 0.8 !important;
+  }
+  
+  body:hover::-webkit-scrollbar-thumb:hover, html:hover::-webkit-scrollbar-thumb:hover, *:hover::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.9) !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Vuetify card styling with clean approach */
+.v-card.employment-card,
+.v-card.project-card,
+.v-card.education-card,
 .card {
-  border: 0.25em solid rgb(0, 175, 239);
-  border-radius: 1em;
-  background: #fff;
-  transition: all 0.3s ease;
-  text-align: left;
-  color: black;
-  -webkit-text-stroke: 1px rgb(0, 118, 182);
-  padding: 1em 1.5em;
-  width: 100%;
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+  /* Remove Vuetify default elevation */
+  --v-card-elevation: 0 !important;
+  /* Optimized spacing for wider main-content */
+  margin: 5px auto !important;
+  position: relative !important;
+  width: 95% !important;
+  padding: 1.2em 2em !important;
+}
+
+.v-card.employment-card:hover,
+.v-card.project-card:hover,
+.v-card.education-card:hover,
+.card:hover {
+  background: rgba(0, 0, 0, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Text styling for all card content */
+.v-card.employment-card *,
+.v-card.project-card *,
+.v-card.education-card *,
+.card * {
+  color: white !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9) !important;
+  text-align: left !important;
+}
+
+/* Card titles and subtitles alignment */
+.v-card-title,
+.v-card-subtitle {
+  text-align: left !important;
+}
+
+/* Employment card list styling with bullet points */
+.v-card.employment-card .v-list {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 1em 0 !important;
+}
+
+.v-card.employment-card .v-list-item {
+  background: transparent !important;
+  border: none !important;
+  padding: 0.2em 0 0.2em 1.5em !important;
+  min-height: auto !important;
+  position: relative !important;
+  display: list-item !important;
+  list-style: none !important;
+}
+
+.v-card.employment-card .v-list-item::before {
+  content: "•" !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-weight: bold !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0.2em !important;
+}
+
+.v-card.employment-card .v-list-item:hover {
+  background: transparent !important;
+}
+
+/* Other card lists (project, education) keep simple styling */
+.v-card.project-card .v-list,
+.v-card.education-card .v-list {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.v-card.project-card .v-list-item,
+.v-card.education-card .v-list-item {
+  background: transparent !important;
+  border: none !important;
+  padding: 0.3em 0 !important;
+  min-height: auto !important;
+}
+
+.v-card.project-card .v-list-item:hover,
+.v-card.education-card .v-list-item:hover {
+  background: transparent !important;
 }
 
 .card .v-card-text em {
