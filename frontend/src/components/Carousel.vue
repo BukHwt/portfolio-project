@@ -33,23 +33,15 @@ const next = () => {
 
 <template>
   <div class="carousel-container" ref="container">
-    <div
-      v-for="(item, index) in items"
-      :key="item.id"
-      class="carousel-item"
-      ref="itemsRefs"
-      :style="{
-        left:
-          index === currentIndex
-            ? '0'
-            : index < currentIndex
-            ? '-100%'
-            : '100%',
-        transition: 'left 0.5s ease',
-      }"
-    >
-      <slot :item="item"></slot>
-    </div>
+    <transition name="carousel-fade" mode="out-in">
+      <div
+        :key="currentIndex"
+        class="carousel-item"
+        ref="itemsRefs"
+      >
+        <slot :item="items[currentIndex]"></slot>
+      </div>
+    </transition>
     <button @click="prev" :disabled="currentIndex === 0">Previous</button>
     <button @click="next" :disabled="currentIndex === items.length - 1">
       Next
@@ -60,32 +52,46 @@ const next = () => {
 <style scoped>
 .carousel-container {
   position: relative;
-  width: 85vw;
-  margin: 0;
-  overflow: hidden;
+  width: 95%;
+  margin: 0 auto;
+  overflow: visible;
   transition: height 0.5s ease;
-  z-index: 0;
 }
 
 .carousel-item {
-  position: absolute;
-  top: 0;
   width: 100%;
-  transition: left 0.5s ease;
-  z-index: 0;
+}
+
+/* Fade transition animations */
+.carousel-fade-enter-active,
+.carousel-fade-leave-active {
+  transition: opacity 0.4s ease-in-out;
+}
+
+.carousel-fade-enter-from {
+  opacity: 0;
+}
+
+.carousel-fade-leave-to {
+  opacity: 0;
 }
 
 button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   color: white;
-  border: none;
-  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
-  opacity: 0.15;
-  z-index: 0;
+  opacity: 0.7;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 button:first-of-type {
@@ -97,17 +103,12 @@ button:last-of-type {
 }
 
 button:hover {
-  opacity: 0.75;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 button:disabled {
-  opacity: 0.05;
+  opacity: 0.3;
   cursor: not-allowed;
-}
-
-@media (min-width: 768px) {
-  .carousel-container {
-    width: 40vw;
-  }
 }
 </style>

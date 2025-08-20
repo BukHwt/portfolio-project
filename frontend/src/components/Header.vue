@@ -23,7 +23,7 @@ const navLinks = [
       class="mobile-nav-button"
       aria-label="Toggle Navigation"
     >
-      <v-icon size="large">mdi-menu</v-icon>
+      <span class="hamburger-icon">☰</span>
     </v-btn>
   </div>
 
@@ -65,11 +65,11 @@ const navLinks = [
     v-model="drawer"
     temporary
     location="bottom"
-    height="auto"
+    height="280"
     color="rgb(176, 183, 188)"
     class="mobile-drawer"
   >
-    <v-list nav density="compact">
+    <v-list nav class="mobile-nav-list">
       <v-list-item
         v-for="link in navLinks"
         :key="link.to"
@@ -98,22 +98,60 @@ const navLinks = [
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
 }
 
+.hamburger-icon {
+  font-size: 2em !important;
+  color: white !important;
+  line-height: 1 !important;
+  font-weight: normal !important;
+  text-shadow: none !important;
+}
+
 /* Mobile drawer styling */
 .mobile-drawer {
-  border-radius: 8px 8px 0 0 !important;
-  border: 1px black solid !important;
-  max-height: 300px !important;
+  border-radius: 16px 16px 0 0 !important;
+  border: 2px solid rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3) !important;
+  overflow: hidden !important;
+}
+
+.mobile-drawer .v-navigation-drawer__content {
+  overflow: hidden !important;
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE/Edge */
+}
+
+.mobile-drawer .v-navigation-drawer__content::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Opera */
+}
+
+.mobile-nav-list {
+  padding: 1em 0 !important;
 }
 
 .mobile-nav-item {
-  text-align: center;
+  margin: 0.5em 1em !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  min-height: 60px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.mobile-nav-item:hover {
+  background: rgba(255, 255, 255, 0.4) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
 }
 
 .mobile-nav-text {
   color: black !important;
-  font-weight: bold;
-  font-size: 1.2em;
-  text-align: center;
+  font-weight: bold !important;
+  font-size: 1.5em !important;
+  text-align: center !important;
+  text-shadow: none !important;
+  line-height: 1.2 !important;
 }
 
 .mobile-nav-text:hover {
@@ -122,14 +160,17 @@ const navLinks = [
 
 /* Desktop navigation styling */
 .nav-button {
-  color: black !important;
+  color: white !important;
   font-weight: bold;
   font-size: 1.2em;
-  -webkit-text-stroke: 1px rgb(0, 118, 182);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.5);
 }
 
 .nav-button:hover {
   color: rgb(0, 118, 182) !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9) !important;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.7);
 }
 
 .desktop-nav {
