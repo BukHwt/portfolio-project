@@ -4,155 +4,135 @@ import { useMediaQuery } from "../composables/useMediaQuery";
 
 const { isMobile } = useMediaQuery();
 
-const isMenuOpen = ref(false);
+const drawer = ref(false);
 
-const toggleMenu = (event: MouseEvent) => {
-  event.stopPropagation();
-  isMenuOpen.value = !isMenuOpen.value;
-};
-const closeMenu = () => {
-  isMenuOpen.value = false;
-};
+const navLinks = [
+  { to: '/', text: 'Home' },
+  { to: '/about', text: 'About' },
+  { to: '/contact', text: 'Contact' }
+];
 </script>
 
 <template>
-  <header id="header-container" data-testid="header">
-    <router-link to="/"
-      ><img src="../assets/wizardpng.png" alt="wizard" v-if="!isMobile"
-    /></router-link>
+  <!-- Mobile Header: Fixed bottom-right -->
+  <div v-if="isMobile" class="mobile-header-container">
+    <v-btn
+      @click="drawer = !drawer"
+      color="rgb(0, 96, 148)"
+      size="large"
+      class="mobile-nav-button"
+      aria-label="Toggle Navigation"
+    >
+      <v-icon size="large">mdi-menu</v-icon>
+    </v-btn>
+  </div>
 
-    <button v-if="isMobile" @click="toggleMenu" aria-label="Toggle Navigation">
-      <span class="hamburger">&#9776;</span>
-    </button>
+  <!-- Desktop Header: Sticky top -->
+  <v-app-bar
+    v-if="!isMobile"
+    data-testid="header"
+    color="rgb(176, 183, 188)"
+    height="80"
+    app
+  >
+    <router-link to="/">
+      <v-img
+        src="../assets/wizardpng.png"
+        alt="wizard"
+        max-width="72"
+        height="72"
+        class="ml-4"
+      />
+    </router-link>
 
-    <nav v-if="!isMobile" class="desktop-nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/contact">Contact</router-link>
-    </nav>
+    <v-spacer />
 
-    <div v-if="isMobile" :class="{ 'mobile-menu': true, active: isMenuOpen }">
-      <router-link to="/" @click="closeMenu">Home</router-link>
-      <router-link to="/about" @click="closeMenu">About</router-link>
-      <router-link to="/contact" @click="closeMenu">Contact</router-link>
-    </div>
-  </header>
+    <v-toolbar-items class="desktop-nav">
+      <v-btn
+        v-for="link in navLinks"
+        :key="link.to"
+        :to="link.to"
+        variant="text"
+        class="nav-button"
+      >
+        {{ link.text }}
+      </v-btn>
+    </v-toolbar-items>
+  </v-app-bar>
+
+  <!-- Mobile Navigation Drawer -->
+  <v-navigation-drawer
+    v-model="drawer"
+    temporary
+    location="bottom"
+    height="auto"
+    color="rgb(176, 183, 188)"
+    class="mobile-drawer"
+  >
+    <v-list nav density="compact">
+      <v-list-item
+        v-for="link in navLinks"
+        :key="link.to"
+        :to="link.to"
+        @click="drawer = false"
+        class="mobile-nav-item"
+      >
+        <v-list-item-title class="mobile-nav-text">{{ link.text }}</v-list-item-title>
+      </v-list-item>
+    </v-list>
+  </v-navigation-drawer>
 </template>
 
 <style scoped>
-#header-container {
+/* Mobile header positioning */
+.mobile-header-container {
   position: fixed;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  bottom: 0;
-  right: 0;
-  padding: 1em;
+  bottom: 1em;
+  right: 1em;
   z-index: 1000;
 }
-button {
-  background: rgb(0, 96, 148);
-  border: 1px black solid;
-  border-radius: 2em;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+.mobile-nav-button {
+  border: 1px black solid !important;
+  border-radius: 2em !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
 }
 
-.hamburger {
-  font-size: 3.5rem;
-  cursor: pointer;
-  background: none;
-  border: none;
-  color: black;
-  padding-bottom: 1em;
-}
-router-link {
-  width: 100%;
-}
-router-link {
-  width: 100%;
+/* Mobile drawer styling */
+.mobile-drawer {
+  border-radius: 8px 8px 0 0 !important;
+  border: 1px black solid !important;
+  max-height: 300px !important;
 }
 
-.mobile-menu {
-  position: absolute;
-  bottom: 3em;
-  right: 0;
-  background: rgb(176, 183, 188);
-  width: 8em;
-  height: auto;
-  max-height: 18em;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  margin-right: 1em;
-  border: 1px black solid;
-  align-items: center;
-  justify-content: space-evenly;
-  transform: translateY(100%);
-  opacity: 0;
-  transition: transform 0.3s ease-out, opacity 0.3s ease-out,
-    transform 0.3s ease-out;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.mobile-menu.active {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.mobile-menu a {
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-  font-size: 1.5em;
-  padding: 1em 0;
-  width: 100%;
+.mobile-nav-item {
   text-align: center;
-  transition: color 0.3s ease;
 }
 
-.mobile-menu a:hover {
-  color: rgb(0, 118, 182);
+.mobile-nav-text {
+  color: black !important;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
 }
 
-@media (min-width: 768px) {
-  #header-container {
-    position: sticky;
-    background: rgb(176, 183, 188);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2em;
-    height: 9vh;
-  }
+.mobile-nav-text:hover {
+  color: rgb(0, 118, 182) !important;
+}
 
-  img {
-    width: 9vh;
-    padding: 0.25em;
-  }
-  .desktop-nav {
-    display: flex;
-    justify-content: right;
-    gap: 20px;
-  }
+/* Desktop navigation styling */
+.nav-button {
+  color: black !important;
+  font-weight: bold;
+  font-size: 1.2em;
+  -webkit-text-stroke: 1px rgb(0, 118, 182);
+}
 
-  .desktop-nav a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    font-size: 1.5em;
-    -webkit-text-stroke: 1px rgb(0, 118, 182);
-  }
+.nav-button:hover {
+  color: rgb(0, 118, 182) !important;
+}
 
-  .desktop-nav a:hover {
-    color: rgb(0, 118, 182);
-  }
-
-  .hamburger {
-    display: none;
-  }
-
-  .mobile-menu {
-    display: none;
-  }
+.desktop-nav {
+  gap: 20px;
 }
 </style>

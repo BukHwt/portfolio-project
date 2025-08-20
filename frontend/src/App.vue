@@ -5,12 +5,16 @@ import { Analytics } from "@vercel/analytics/vue";
 </script>
 
 <template>
-  <Analytics />
-  <SpeedInsights />
-  <Header> </Header>
-  <div id="app-container">
-    <router-view> </router-view>
-  </div>
+  <v-app style="background: rgb(0, 118, 182);">
+    <Analytics />
+    <SpeedInsights />
+    <Header> </Header>
+    <v-main style="background: rgb(0, 118, 182);">
+      <div id="app-container">
+        <router-view> </router-view>
+      </div>
+    </v-main>
+  </v-app>
 </template>
 
 <style scoped>
